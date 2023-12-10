@@ -21,6 +21,6 @@ async function callAPI() {
     if (data.choices && data.choices.length > 0) {
         document.getElementById("completionWindow").innerText = data.choices[0].text;
     } else {
-        document.getElementById("completionWindow").innerText = "No response received from the API.";
+        document.getElementById("completionWindow").innerText = "No response received from the API loser.";
     }
 }
