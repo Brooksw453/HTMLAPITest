@@ -1,26 +1,30 @@
+// script.js
+
 async function callAPI() {
-    const apiKey = "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";
-    const apiUrl = "https://openai.com";
-
     const promptInput = document.getElementById("promptInput").value;
+    const completionWindow = document.getElementById("completionWindow");
 
-    const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-            prompt: promptInput,
-            max_tokens: 100
-        })
-    });
+    // Retrieve your API secret key from the .env file
+    const apiKey = process.env.OPENAI_API_KEY;
 
-    const data = await response.json();
+    try {
+        const response = await fetch('https://api.openai.com/v1/engines/davinci/completions', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                prompt: promptInput,
+                max_tokens: 50, // Adjust this as needed
+            }),
+        });
 
-    if (data.choices && data.choices.length > 0) {
-        document.getElementById("completionWindow").innerText = data.choices[0].text;
-    } else {
-        document.getElementById("completionWindow").innerText = "No response received from the API loser.";
+        const data = await response.json();
+        completionWindow.innerText = data.choices[0].text;
+    } catch (error) {
+        console.error(error);
+        completionWindow.innerText = "Error occurred while fetching data from OpenAI API.";
     }
 }
+
