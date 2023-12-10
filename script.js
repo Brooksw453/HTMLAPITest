@@ -1,5 +1,7 @@
 // script.js
 
+require('dotenv').config();
+
 async function callAPI() {
     const promptInput = document.getElementById("promptInput").value;
     const completionWindow = document.getElementById("completionWindow");
