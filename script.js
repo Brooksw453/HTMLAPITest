@@ -1,6 +1,6 @@
 async function callAPI() {
-    const apiKey = "<dff52d8af4904315ae4c944eaa2a7d1d>";
-    const apiUrl = "<https://winchellai.openai.azure.com/>";
+    const apiKey = "dff52d8af4904315ae4c944eaa2a7d1d";
+    const apiUrl = "https://winchellai.openai.azure.com/";
 
     const promptInput = document.getElementById("promptInput").value;
 
