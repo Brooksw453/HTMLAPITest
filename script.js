@@ -1,6 +1,6 @@
 async function callAPI() {
-    const apiKey = "dff52d8af4904315ae4c944eaa2a7d1d";
-    const apiUrl = "https://winchellai.openai.azure.com/";
+    const apiKey = "<dff52d8af4904315ae4c944eaa2a7d1d>";
+    const apiUrl = "<https://winchellai.openai.azure.com/>";
 
     const promptInput = document.getElementById("promptInput").value;
 
@@ -18,5 +18,9 @@ async function callAPI() {
 
     const data = await response.json();
 
-    document.getElementById("completionWindow").innerText = data.choices[0].text;
+    if (data.choices && data.choices.length > 0) {
+        document.getElementById("completionWindow").innerText = data.choices[0].text;
+    } else {
+        document.getElementById("completionWindow").innerText = "No response received from the API.";
+    }
 }
